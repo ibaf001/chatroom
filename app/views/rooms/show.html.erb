@@ -3,14 +3,18 @@
 <div id='chat-container'>
     <header>Chill Out Room</header>
     <div id='chat-box'>
+        <% @messages.each do |msg| %>
       <div class='row'>
-        <p>This is a message sample</p>
-        <span>--author</span>
+
+        <p><%= msg.content %></p>
+        <span>--<%= msg.user.name %></span>
+        
       </div>
+      <% end %>
    </div>
 
    <div id='form-box'>
-     <%= form_for :message do |f| %>
+     <%= form_for :message, url: messages_path  do |f| %>
        <%= f.text_field :content, id: 'message_input' %>
        <%= f.submit 'Send Message' %>
      <% end %>
